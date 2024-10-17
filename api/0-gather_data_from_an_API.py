@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 
+""" This is a script """
 
 import requests
 import sys
