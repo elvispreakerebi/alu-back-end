@@ -1,12 +1,13 @@
 #!/usr/bin/python3
 
+
 import requests
 import sys
 
 def get_employee_todo_progress(employee_id):
-    # Fetch the employee data from the API
-    employee_url = f"https://jsonplaceholder.typicode.com/users/{employee_id}"
-    todos_url = f"https://jsonplaceholder.typicode.com/users/{employee_id}/todos"
+    # Fetch the employee data from the API using .format() for string formatting
+    employee_url = "https://jsonplaceholder.typicode.com/users/{}".format(employee_id)
+    todos_url = "https://jsonplaceholder.typicode.com/users/{}/todos".format(employee_id)
 
     employee_response = requests.get(employee_url)
     todos_response = requests.get(todos_url)
@@ -29,11 +30,11 @@ def get_employee_todo_progress(employee_id):
     completed_count = len(completed_tasks)
 
     # Output the employee's TODO progress
-    print(f"Employee {employee_name} is done with tasks({completed_count}/{total_tasks}):")
+    print("Employee {} is done with tasks({}/{}):".format(employee_name, completed_count, total_tasks))
 
     # Output the title of each completed task
     for task in completed_tasks:
-        print(f"\t {task.get('title')}")
+        print("\t {}".format(task.get('title')))
 
 if __name__ == "__main__":
     # Check if an employee ID was passed as a command line argument
